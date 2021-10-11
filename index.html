@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Serial API -teszt az ODC webadmin apphoz</title>
+</head>
+<body>
+    <script src="./com.js"></script>
+
+  <div class="serial-scale-div" style="margin: 10px;">
+        <button class="btn" id="connect-to-serial">COM -port kiválasztása</button>
+  </div>
+
+  <button id="get-serial-messages" style="margin: 10px;">Adatok lekérése</button>
+  
+  <div id="serial-messages-container">
+    <div style="border: 2px solid yellow; margin-top: 25px;" class="message"></div>
+  </div>
+
+  <script>
+
+    const serialScaleController = new SerialScaleController();
+    const connect = document.getElementById('connect-to-serial');
+    const getSerialMessages = document.getElementById('get-serial-messages');
+
+    connect.addEventListener('click', () => {
+      serialScaleController.init();
+    });
+
+    getSerialMessages.addEventListener('click', async () => {
+      getSerialMessage();
+    });
+
+    async function getSerialMessage() {
+      document.querySelector("#serial-messages-container .message").innerText += await serialScaleController.read()
+    }
+
+  </script>
+</body>
+</html>
