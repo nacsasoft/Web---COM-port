@@ -1,1 +1,1 @@
-# Web-COM-kezel-s
+# Web-COM-kezelés
